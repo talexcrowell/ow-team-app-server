@@ -4,18 +4,23 @@ const express = require('express');
 const cors = require('cors');
 const morgan = require('morgan');
 const { PORT, CLIENT_ORIGIN } = require('./config');
+
 const app = express();
 
-
-app.use(morgan(process.env.NODE_ENV === 'development' ? 'dev' : 'common', {
-  skip: () => process.env.NODE_ENV === 'test'
+app.use(morgan(process.env.NODE_ENV === 'production' ? 'common' : 'dev', {
+  skip: (req, res) => process.env.NODE_ENV === 'test'
 }));
 
-app.use(cors({origin: CLIENT_ORIGIN}));
-app.use(express.json());
-app.use(express.static('public'));
+app.use(
+  cors({
+    origin: CLIENT_ORIGIN
+  })
+);
 
-app.get('/teamlist', (req, res) => res.json(
+app.use(express.json());
+// app.use(express.static('public'));
+
+app.get('/api/teamlist', (req, res) => res.json(
   [
     {
       heroName: 'D.Va'
