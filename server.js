@@ -15,7 +15,93 @@ app.use(cors({origin: CLIENT_ORIGIN}));
 app.use(express.json());
 app.use(express.static('public'));
 
-app.get('/teamlist', (req, res) => res.json({heroName: 'Tracer'}));
+app.get('/teamlist', (req, res) => res.json(
+  [
+    {
+      heroName: 'D.Va'
+    },
+    {
+      heroName: 'Orisa'
+    },
+    {
+      heroName: 'Reinhardt'
+    },
+    {
+      heroName: 'Roadhog'
+    },
+    {
+      heroName: 'Wrecking Ball'
+    },
+    {
+      heroName: 'Zarya'
+    },
+    {
+      heroName: 'Ashe'
+    },
+    {
+      heroName: 'Bastion'
+    },
+    {
+      heroName: 'Doomfist'
+    },
+    {
+      heroName: 'Genji'
+    },
+    {
+      heroName: 'Hanzo'
+    },
+    {
+      heroName: 'Junkrat'
+    },
+    {
+      heroName: 'McCree'
+    },
+    {
+      heroName: 'Mei'
+    },
+    {
+      heroName: 'Pharah'
+    },
+    {
+      heroName: 'Reaper'
+    },
+    {
+      heroName: 'Soldier: 76'
+    },
+    {
+      heroName: 'Sombra'
+    },
+    {
+      heroName: 'Symmetra'
+    },
+    {
+      heroName: 'Torbjorn'
+    },
+    {
+      heroName: 'Tracer'
+    },
+    {
+      heroName: 'Widowmaker'
+    },
+    {
+      heroName: 'Ana'
+    },
+    {
+      heroName: 'Brigitte'
+    },
+    {
+      heroName: 'Lucio'
+    },
+    {
+      heroName: 'Mercy'
+    },
+    {
+      heroName: 'Moira'
+    },
+    {
+      heroName: 'Zenyatta'
+    }
+  ]));
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
