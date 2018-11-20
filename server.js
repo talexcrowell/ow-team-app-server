@@ -3,7 +3,10 @@
 const express = require('express');
 const cors = require('cors');
 const morgan = require('morgan');
-const { PORT, CLIENT_ORIGIN } = require('./config');
+const mongoose = require('mongoose');
+
+const { PORT, CLIENT_ORIGIN, DATABASE_URL } = require('./config');
+const heroesRouter = require('./routers/heroes');
 
 const app = express();
 
@@ -20,93 +23,7 @@ app.use(
 app.use(express.json());
 // app.use(express.static('public'));
 
-app.get('/api/teamlist', (req, res) => res.json(
-  [
-    {
-      heroName: 'D.Va'
-    },
-    {
-      heroName: 'Orisa'
-    },
-    {
-      heroName: 'Reinhardt'
-    },
-    {
-      heroName: 'Roadhog'
-    },
-    {
-      heroName: 'Wrecking Ball'
-    },
-    {
-      heroName: 'Zarya'
-    },
-    {
-      heroName: 'Ashe'
-    },
-    {
-      heroName: 'Bastion'
-    },
-    {
-      heroName: 'Doomfist'
-    },
-    {
-      heroName: 'Genji'
-    },
-    {
-      heroName: 'Hanzo'
-    },
-    {
-      heroName: 'Junkrat'
-    },
-    {
-      heroName: 'McCree'
-    },
-    {
-      heroName: 'Mei'
-    },
-    {
-      heroName: 'Pharah'
-    },
-    {
-      heroName: 'Reaper'
-    },
-    {
-      heroName: 'Soldier: 76'
-    },
-    {
-      heroName: 'Sombra'
-    },
-    {
-      heroName: 'Symmetra'
-    },
-    {
-      heroName: 'Torbjorn'
-    },
-    {
-      heroName: 'Tracer'
-    },
-    {
-      heroName: 'Widowmaker'
-    },
-    {
-      heroName: 'Ana'
-    },
-    {
-      heroName: 'Brigitte'
-    },
-    {
-      heroName: 'Lucio'
-    },
-    {
-      heroName: 'Mercy'
-    },
-    {
-      heroName: 'Moira'
-    },
-    {
-      heroName: 'Zenyatta'
-    }
-  ]));
+app.use('/api/teamlist', heroesRouter);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
@@ -125,10 +42,21 @@ app.use((err, req, res, next) => {
   }
 });
 
-app.listen(PORT, function() {
-  console.info(`Server listening on ${this.address().port}`);
-}).on('error', err=>{
-  console.error(err);
-});
+if (require.main === module){
+  mongoose.connect(DATABASE_URL, {useNewUrlParser: true, useCreateIndex: true})
+    .then(instance => {
+      const conn = instance.connections[0];
+      console.log(`Connected to: mongodb://${conn.host}:${conn.port}/${conn.name}`);
+    })
+    .catch(err => {
+      console.error(err);
+    });
+  
+  app.listen(PORT, function() {
+    console.info(`Server listening on ${this.address().port}`);
+  }).on('error', err=>{
+    console.error(err);
+  });
+}
 
 module.exports = app;
