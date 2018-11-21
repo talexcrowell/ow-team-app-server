@@ -4,9 +4,19 @@ const express = require('express');
 const cors = require('cors');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
+const passport = require('passport');
+const localStrategy = require('./passport/local');
+const jwtStrategy = require('./passport/jwt');
+
 
 const { PORT, CLIENT_ORIGIN, DATABASE_URL } = require('./config');
+
 const heroesRouter = require('./routers/heroes');
+const usersRouter = require('./routers/users');
+const authRouter = require('./routers/auth');
+
+passport.use(localStrategy);
+passport.use(jwtStrategy);
 
 const app = express();
 
@@ -20,10 +30,13 @@ app.use(
   })
 );
 
+app.use(express.static('public'));
 app.use(express.json());
-// app.use(express.static('public'));
 
-app.use('/api/teamlist', heroesRouter);
+
+app.use('/api/heroes', heroesRouter);
+app.use('/api/users', usersRouter);
+app.use('/api', authRouter);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

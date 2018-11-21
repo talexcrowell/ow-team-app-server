@@ -1,7 +1,6 @@
 'use strict';
 
 const express = require('express');
-const mongoose = require('mongoose');
 
 const Hero = require('../models/hero');
 
@@ -20,14 +19,5 @@ router.get('/', (req, res, next) => {
     });
 });
 
-router.get('/', (req, res, next) => {
-  Hero.find({})
-    .then(results => {
-      res.json(results);
-    })
-    .catch(err => {
-      next(err);
-    });
-});
 module.exports = router;
 
