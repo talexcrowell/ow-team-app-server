@@ -21,7 +21,6 @@ const localAuth = passport.authenticate('local', options);
 const jwtAuth = passport.authenticate('jwt', options);
 
 router.post('/login', localAuth, (req, res) =>{
-  console.log('TRIGGERED');
   const authToken = createAuthToken(req.user);
   return res.json({ authToken });
 });

@@ -2,11 +2,13 @@
 
 const express = require('express');
 const mongoose = require('mongoose');
+const passport = require('passport');
 
 const Team = require('../models/team');
-const Hero = require('../models/hero');
 
 const router = express.Router();
+
+router.use('/', passport.authenticate('jwt', {session:false, failWithError: true}));
 
 
 router.get('/', (req, res, next)=> {
@@ -45,21 +47,22 @@ router.get('/:id', (req, res, next) => {
 });
 
 router.post('/', (req, res, next) => {
-  const { name, team } = req.body;
+
+  const name = req.body.currentTeam.name;
+  const team= req.body.currentTeam.team;
   const userId = req.user.id;
 
   const newTeam = { name, team, userId };
+
 
   if (!name) {
     const err = new Error('Missing `name` in request body');
     err.status = 400;
     return next(err);
   }
-
   Team.create(newTeam)
     .then(result => {
-      console.log(result);
-      // res.location(`${req.originalUrl}/${result.id}`).status(201).json(result);
+      res.location(`${req.originalUrl}/${result.id}`).status(201).json(result);
     })
     .catch(err => {
       if (err.code === 11000) {
