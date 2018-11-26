@@ -14,6 +14,7 @@ const { PORT, CLIENT_ORIGIN, DATABASE_URL } = require('./config');
 const heroesRouter = require('./routers/heroes');
 const usersRouter = require('./routers/users');
 const authRouter = require('./routers/auth');
+const teamsRouter = require('./routers/team');
 
 passport.use(localStrategy);
 passport.use(jwtStrategy);
@@ -37,6 +38,7 @@ app.use(express.json());
 app.use('/api/heroes', heroesRouter);
 app.use('/api/users', usersRouter);
 app.use('/api', authRouter);
+app.use('/api/teams', teamsRouter);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

@@ -20,11 +20,11 @@ schema.set('toJSON', {
   }
 });
 
-schema.methods.validatePassword = (password) => {
+schema.methods.validatePassword = function(password){
   return bcrypt.compare(password, this.password);
 };
 
-schema.statics.hashPassword = (password) => {
+schema.statics.hashPassword = function(password){
   return bcrypt.hash(password, 10);
 };
 

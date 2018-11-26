@@ -2,15 +2,11 @@
 
 const mongoose = require('mongoose');
 
+
 const schema = new mongoose.Schema({
-  heroName: String,
-  role: String,
-  damage: Number,
-  dps: Number,
-  health: Number,
-  hps: Number,
-  abilities: [String],
-  ultimate: Object
+  name: {type: String, required: true},
+  team: mongoose.Schema.Types.Mixed,
+  userId: {type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true}
 });
 
 schema.set('toJSON', {
@@ -21,4 +17,4 @@ schema.set('toJSON', {
   }
 });
 
-module.exports = mongoose.model('Hero', schema);
+module.exports = mongoose.model('Team', schema);
