@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 
 const schema = new mongoose.Schema({
   heroName: String,
+  image: String,
   role: String,
   damage: Number,
   dps: Number,
