@@ -2,6 +2,7 @@
 
 const mongoose = require('mongoose');
 
+
 const schema = new mongoose.Schema({
   heroName: String,
   image: String,
@@ -10,7 +11,7 @@ const schema = new mongoose.Schema({
   dps: Number,
   health: Number,
   hps: Number,
-  abilities: [String],
+  abilities: [],
   ultimate: Object
 });
 

@@ -50,9 +50,10 @@ router.post('/', (req, res, next) => {
 
   const name = req.body.currentTeam.name;
   const team= req.body.currentTeam.team;
+  const notes = req.body.currentTeam.notes;
   const userId = req.user.id;
 
-  const newTeam = { name, team, userId };
+  const newTeam = { name, team, userId , notes };
 
 
   if (!name) {
@@ -69,6 +70,26 @@ router.post('/', (req, res, next) => {
         err = new Error('Team name already exists');
         err.status = 400;
       }
+      next(err);
+    });
+});
+
+
+router.delete('/:id', (req, res, next) => {
+  const {id} = req.params;
+  const userId = req.user.id;
+
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    const err = new Error('The `id` is not valid');
+    err.status = 400;
+    return next(err);
+  }
+
+  Team.findByIdAndDelete({_id: id, userId})
+    .then(() =>{
+      res.sendStatus(204);
+    })
+    .catch(err => {
       next(err);
     });
 });

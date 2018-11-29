@@ -9,20 +9,22 @@ const mongoose = require('mongoose');
 
 const teamSchema = new mongoose.Schema({
   heroName: String,
+  image: String,
   role: String,
   damage: Number,
   dps: Number,
   health: Number,
   hps: Number,
-  abilities: [String],
+  abilities: [],
   ultimate: Object
 });
 
 
 
 const schema = new mongoose.Schema({
-  name: {type: String, required: true},
+  name: {type: String, required: true, unique: true},
   team: [teamSchema],
+  notes: String,
   userId: {type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true}
 });
 

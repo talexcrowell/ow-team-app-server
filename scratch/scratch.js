@@ -1,3 +1,17 @@
+
+{
+  abilityName: 'Defense Matrix',
+  desc: 'Absorbs incoming projectiles' 
+},
+{
+  abilityName: 'Boosters',
+  desc: 'Mech uses boosters to fly in the air and/or barrel through enemies'
+}, 
+{
+  abilityName: 'Micro Missles',
+  desc:'Shoots a burst of missles, up to 162 damage per use '
+}
+
 {
   abilityName: 'Barrier Field',
   desc: 'Projects a large barrier that absorbs enemy damage. Reinhardt can not attack while projecting barrier, 2000 shield-health' 
@@ -23,20 +37,6 @@
 {
   abilityName: 'Protective Barrier',
   desc:'Tosses a stationary barrier that blocks enemies\' attacks, 900 sheild-health'
-}
-
-
-{
-  abilityName: 'Defense Matrix',
-  desc: 'Absorbs incoming projectiles' 
-},
-{
-  abilityName: 'Boosters',
-  desc: 'Mech uses boosters to fly in the air and/or barrel through enemies'
-}, 
-{
-  abilityName: 'Micro Missles',
-  desc:'Shoots a burst of missles, up to 162 damage per use '
 }
 
 

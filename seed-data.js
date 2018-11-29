@@ -9,7 +9,7 @@ const heroes = [
     dps: 146.74,
     health: 600,
     hps: 0,
-    abilties:[],
+    abilities:['Defense Matrix','Boosters','Micro Missles'],
     ultimate: {
       ultName: 'Self-Destruct',
       desc: 'D.Va ejects from mech as reactor is overloading creating an explosion, deals max damage of 1000 from point of explosion'
@@ -23,7 +23,7 @@ const heroes = [
     dps: 137.5,
     health: 400,
     hps: 0,
-    abilties:[],
+    abilities:['Halt!', 'Fortify', 'Protective Barrier'],
     ultimate: {
       ultName: 'Supercharger',
       desc: 'Deploys a device that increases damage of surrounding (within line of sight) allies by 50% for 16 seconds'
@@ -37,7 +37,7 @@ const heroes = [
     dps: 82.5,
     health: 500,
     hps: 0,
-    abilties:[],
+    abilities:['Barrier Field', 'Charge', 'Fire Strike'],
     ultimate: {
       ultName: 'Earthshatter',
       desc: 'Slams hammer into the ground and knocks/damages all enemies in front of Reinhardt'
@@ -51,7 +51,7 @@ const heroes = [
     dps: 195,
     health: 600,
     hps: 0,
-    abilties:[],
+    abilities:['Chain Hook', 'Take A Breather'],
     ultimate: {
       ultName: 'Whole Hog',
       desc: 'Roadhog transforms scrap gun to be gatling gun that cranks out a stream of shrapnel that knocks back enemies'
@@ -65,7 +65,7 @@ const heroes = [
     dps: 60,
     health: 500,
     hps: 0,
-    abilties:[],
+    abilities:['Jump Pack', 'Barrier Projector'],
     ultimate: {
       ultName: 'Primal Rage',
       desc: 'Winston transforms boosting his health, strengthing his melee attacks, and allows him to use Jump Pack more often'
@@ -79,7 +79,7 @@ const heroes = [
     dps: 150,
     health: 600,
     hps: 0,
-    abilties:[],
+    abilities:['Grappling Claw', 'Roll', 'Adaptive Shield', 'Piledriver'],
     ultimate: {
       ultName: 'Minefield',
       desc: 'Deploys a minefield in a collected area that deals damage of 130 for each mine'
@@ -93,7 +93,7 @@ const heroes = [
     dps: 95,
     health: 400,
     hps: 0,
-    abilties:[],
+    abilities:['Particle Barrier', 'Projected Barrier'],
     ultimate: {
       ultName: 'Graviton Surge',
       desc: 'Launches a gravity bomb that attracts/traps enemies around the bomb and deals damages as they are trapped'
@@ -122,7 +122,7 @@ const heroes = [
   {
     heroName: 'Hanzo',
     image: 'https://d1u1mce87gyfbn.cloudfront.net/hero/hanzo/hero-select-portrait.png',
-    role: 'Damage (Projectile)'
+    role: 'Damage (Sniper)'
   },
   {
     heroName: 'Junkrat',
@@ -147,7 +147,7 @@ const heroes = [
   {
     heroName: 'Reaper',
     image: 'https://d1u1mce87gyfbn.cloudfront.net/hero/reaper/hero-select-portrait.png',
-    role: 'Damage (Close-Range)'
+    role: 'Damage (Burst)'
   },
   {
     heroName: 'Soldier: 76',
@@ -177,7 +177,7 @@ const heroes = [
   {
     heroName: 'Widowmaker',
     image: 'https://d1u1mce87gyfbn.cloudfront.net/hero/widowmaker/hero-select-portrait.png',
-    role: 'Damage (Hitscan)'
+    role: 'Damage (Sniper)'
   },
   {
     heroName: 'Ana',
@@ -211,5 +211,20 @@ const heroes = [
   }
 ];
 
-module.exports ={ heroes };
+const abilities= [
+  {
+    abilityName: 'Barrier Field',
+    desc: 'Projects a large barrier that absorbs enemy damage. Reinhardt can not attack while projecting barrier, 2000 shield-health' 
+  },
+  {
+    abilityName: 'Charge',
+    desc: 'Charges forward in a straight line, pinning the the first enemy in his path and knocking others out of the way. Initial damage is 50, while pinning an enemy to the wall is 300 damage'
+  }, 
+  {
+    abilityName: 'Fire Strike',
+    desc:'Launches a flaming projectile that pierces shields and damages all enemies it contacts, deals 100 damage'
+  }
+];
+
+module.exports ={ heroes, abilities };
 
