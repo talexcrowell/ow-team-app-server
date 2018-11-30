@@ -11,7 +11,7 @@ const router = express.Router();
 router.use('/', passport.authenticate('jwt', {session:false, failWithError: true}));
 //Retrieve list of heroes
 router.get('/', (req, res, next) => {
-  Hero.find({})
+  Hero.find({}).sort({ heroName: 'asc'})
     .then(results => {
       res.json(results);
     })
