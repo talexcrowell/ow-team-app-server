@@ -66,7 +66,7 @@ router.post('/',(req, res, next) => {
     return res.status(422).json({
       code: 422,
       reason:'ValidationError',
-      message: tooSmallField ? `Must be at least ${sizedFields[tooSmallField].min} characters long` : `Must be at most ${sizedFields[tooLargeField].max} characters long`,
+      message: tooSmallField ? `must be at least ${sizedFields[tooSmallField].min} characters long` : `must be at most ${sizedFields[tooLargeField].max} characters long`,
       location: tooSmallField || tooLargeField
     });
   }
@@ -79,7 +79,7 @@ router.post('/',(req, res, next) => {
           code: 400,
           reason: 'ValidationError',
           message: 'Username already exists',
-          location: 'username'
+          location: 'Username'
         });
       }
       return User.hashPassword(password);
